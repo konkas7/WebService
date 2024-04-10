@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Richiesta POST con JSON</title>
+</head>
+<body>
+    <h2>Richiesta POST con JSON</h2>
+    <p id="x"></p>
+
+    <script>
+        const xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onload = function () {
+            const responseObj = JSON.parse(this.responseText);
+            document.getElementById("x").innerHTML = responseObj.message;
+        }
+
+        const formData = { nome: "prova", valore: 3 };
+
+        xmlhttp.open("POST", "index.php");
+
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+
+        const jsonData = JSON.stringify(formData);
+        xmlhttp.send(jsonData);
+    </script>
+</body>
+</html>
